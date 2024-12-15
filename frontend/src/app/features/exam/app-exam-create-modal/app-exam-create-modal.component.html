@@ -1,0 +1,104 @@
+<button (click)="isOpen = true"
+            class="p-2 px-5 text-sm rounded-xl font-medium bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700 transition-all duration-200">
+            Organiser un examen
+        </button>
+
+<!-- Modal Backdrop -->
+<div *ngIf="isOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <!-- Modal Content -->
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+        <!-- Modal Header -->
+        <div class="bg-gray-50 py-4 px-6 rounded-t-lg border-b">
+            <h3 class="text-lg font-semibold text-gray-900">Organiser un nouvel examen</h3>
+        </div>
+
+        <!-- Modal Body -->
+        <form #examForm="ngForm" (ngSubmit)="onSubmit()" class="p-6 space-y-4">
+            <!-- Student Name -->
+            <div>
+                <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">
+                    Nom de l'étudiant
+                </label>
+                <input id="studentName" type="text" [(ngModel)]="exam.studentName" name="studentName"
+                    #studentName="ngModel" required
+                    class="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    [ngClass]="{'border-red-300': studentName.invalid && (studentName.dirty || studentName.touched),
+                               'border-gray-300': !studentName.invalid || !(studentName.dirty || studentName.touched)}"
+                    placeholder="Nom de l'étudiant" />
+                <div *ngIf="studentName.invalid && (studentName.dirty || studentName.touched)"
+                    class="mt-1 text-sm text-red-600">
+                    Ce champ ne peut pas être vide
+                </div>
+            </div>
+
+            <div>
+                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">
+                    Lieu de l'examen
+                </label>
+                <input id="location" type="text" [(ngModel)]="exam.location" name="location"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Lieu de l'examen" />
+            </div>
+
+            <!-- Date -->
+            <div>
+                <label for="date" class="block text-sm font-medium text-gray-700 mb-1">
+                    Date
+                </label>
+                <input id="date" type="date" [(ngModel)]="exam.date" name="date" #date="ngModel" required
+                    class="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    [ngClass]="{'border-red-300': date.invalid && (date.dirty || date.touched),
+                               'border-gray-300': !date.invalid || !(date.dirty || date.touched)}" />
+                <div *ngIf="date.invalid && (date.dirty || date.touched)" class="mt-1 text-sm text-red-600">
+                    Ce champ ne peut pas être vide
+                </div>
+            </div>
+
+            <!-- Time -->
+            <div>
+                <label for="time" class="block text-sm font-medium text-gray-700 mb-1">
+                    Heure
+                </label>
+                <input id="time" type="time" [(ngModel)]="exam.time" name="time" #time="ngModel" required
+                    class="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    [ngClass]="{'border-red-300': time.invalid && (time.dirty || time.touched),
+                               'border-gray-300': !time.invalid || !(time.dirty || time.touched)}" />
+                <div *ngIf="time.invalid && (time.dirty || time.touched)" class="mt-1 text-sm text-red-600">
+                    Ce champ ne peut pas être vide
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div>
+                <label for="status" class="block text-sm font-medium text-gray-700 mb-1">
+                    Statut
+                </label>
+                <select id="status" [(ngModel)]="exam.status" name="status" #status="ngModel" required
+                    class="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    [ngClass]="{'border-red-300': status.invalid && (status.dirty || status.touched),
+                               'border-gray-300': !status.invalid || !(status.dirty || status.touched)}">
+                    <option value="À organiser">À organiser</option>
+                    <option value="Annulé">Annulé</option>
+                    <option value="Confirmé">Confirmé</option>
+                    <option value="En recherche de place">En recherche</option>
+                </select>
+                <div *ngIf="status.invalid && (status.dirty || status.touched)" class="mt-1 text-sm text-red-600">
+                    Ce champ ne peut pas être vide
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex justify-end gap-3 pt-4">
+                <button type="button" (click)="isOpen = false"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Annuler
+                </button>
+                <button type="submit" [disabled]="examForm.invalid || isSubmitting" class="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm 
+           hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+           disabled:opacity-50 disabled:cursor-not-allowed">
+                    {{ isSubmitting ? 'Création...' : 'Créer' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="p-6 flex flex-col text-gray-900 gap-3">
+    <div class="flex rounded-lg p-5 gap-10 border border-gray-300 flex-col">
+        <p class="text-2xl font-bold text-center w-full">
+            Statistiques des examens
+        </p>
+        <div class="flex items-center justify-evenly gap-10">
+            <app-stats-card class="w-full" [count]="examStats.stats().confirmed" icon="fa fa-regular fa fa-circle-check"
+                theme="success">
+                Confirmé
+            </app-stats-card>
+            <app-stats-card class="w-full" [count]="examStats.stats().toOrganize" icon="fa fa-regular fa fa-clipboard"
+                theme="warn">
+                A organiser
+            </app-stats-card>
+            <app-stats-card class="w-full" [count]="examStats.stats().cancelled" icon="fa fa-solid fa fa-xmark"
+                theme="danger">
+                Annulé
+            </app-stats-card>
+            <app-stats-card class="w-full" [count]="examStats.stats().inSearch" icon="fa fa-regular fa fa-clock"
+                theme="primary">
+                En recherche de place
+            </app-stats-card>
+        </div>
+    </div>
+</div>
+<app-exam-list (examCreated)="onExamCreated()"></app-exam-list>

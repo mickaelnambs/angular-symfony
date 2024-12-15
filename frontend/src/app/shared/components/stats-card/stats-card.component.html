@@ -1,0 +1,13 @@
+<div class="flex rounded-lg p-5 gap-5 border">
+	<div class="flex justify-between w-full items-center">
+		<div class="flex flex-col gap-2">
+			<span class="text-gray-700">
+				<ng-content></ng-content>
+			</span>
+			<span class="text-2xl font-bold" [ngClass]="[themes[theme]]">
+				{{count}}
+			</span>
+		</div>
+		<i class="text-3xl" [ngClass]="[themes[theme], icon]"></i>
+	</div>
+</div>

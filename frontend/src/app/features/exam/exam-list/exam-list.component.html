@@ -1,0 +1,62 @@
+<div class="p-6 flex flex-col text-gray-900 gap-3">
+    <!-- Header Section -->
+    <div class="flex items-center justify-between">
+        <div class="flex flex-col">
+            <h1 class="text-2xl font-semibold">Mes examens</h1>
+            <p class="text-sm font-medium text-gray-700">
+                {{exams.length}} examen{{ exams.length > 1 ? 's' : '' }} à venir
+            </p>
+        </div>
+        <app-exam-create-modal (examCreated)="loadExams()" />
+    </div>
+
+    <!-- Exams List Section -->
+    <div class="flex flex-col gap-3">
+        <!-- Exam Item -->
+        <ng-container *ngIf="exams.length > 0; else noExams">
+            <div *ngFor="let exam of exams" class="rounded-xl p-4 border border-gray-400">
+                <div class="flex items-center justify-around w-full">
+                    <!-- Student Name -->
+                    <div class="font-medium flex items-center gap-3 text-gray-700 w-[200px]">
+                        <i class="fa-regular fa-user w-5 text-center"></i>
+                        <span class="truncate">{{exam.studentName}}</span>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex items-center gap-3 w-[200px]">
+                        <i class="fa-solid fa-location-dot w-5 text-center"></i>
+                        <span class="truncate">{{getDisplayValue(exam, 'location')}}</span>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="flex items-center gap-3 w-[200px]">
+                        <i class="fa-regular fa-calendar w-5 text-center"></i>
+                        <span>{{getDisplayValue(exam, 'date')}}</span>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="flex items-center gap-3 w-[150px]">
+                        <i class="fa-regular fa-clock w-5 text-center"></i>
+                        <span>{{getDisplayValue(exam, 'time')}}</span>
+                    </div>
+
+                    <!-- Status Badge -->
+                    <div class="flex items-center gap-3 w-[200px] justify-start">
+                        <app-badge 
+                            [icon]="getIcon('status', getStatus(exam.status))" 
+                            [theme]="getBadgeTheme(getStatus(exam.status))">
+                            {{exam.status}}
+                        </app-badge>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Empty State -->
+        <ng-template #noExams>
+            <div class="text-center rounded-xl p-4 border border-gray-400">
+                <p class="text-gray-500">Aucun examen disponible</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

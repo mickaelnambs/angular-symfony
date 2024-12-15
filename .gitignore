@@ -1,0 +1,74 @@
+###> symfony/framework-bundle ###
+/backend/.env.local
+/backend/.env.local.php
+/backend/.env.*.local
+/backend/config/secrets/prod/prod.decrypt.private.php
+/backend/public/bundles/
+/backend/var/
+/backend/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/backend/phpunit.xml
+/backend/.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+/backend/.phpunit.result.cache
+/backend/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/asset-mapper ###
+/backend/public/assets/
+/backend/assets/vendor/
+###< symfony/asset-mapper ###
+
+###> lexik/jwt-authentication-bundle ###
+/backend/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/backend/.php-cs-fixer.php
+/backend/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+# Compiled output
+/frontend/dist
+/frontend/tmp
+/frontend/out-tsc
+/frontend/bazel-out
+
+# Node
+/frontend/node_modules
+/frontend/npm-debug.log
+/frontend/yarn-error.log
+
+# IDEs and editors
+/frontend/.idea/
+/frontend/.project
+/frontend/.classpath
+/frontend/.c9/
+/frontend/*.launch
+/frontend/.settings/
+/frontend/*.sublime-workspace
+
+# Visual Studio Code
+/frontend/.vscode/*
+!/frontend/.vscode/settings.json
+!/frontend/.vscode/tasks.json
+!/frontend/.vscode/launch.json
+!/frontend/.vscode/extensions.json
+/frontend/.history/*
+
+# Miscellaneous
+/frontend/.angular/cache
+/frontend/.sass-cache/
+/frontend/connect.lock
+/frontend/coverage
+/frontend/libpeerconnection.log
+/frontend/testem.log
+/frontend/typings
+
+# System files
+.DS_Store
+Thumbs.db
